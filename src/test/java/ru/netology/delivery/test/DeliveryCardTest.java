@@ -1,4 +1,4 @@
-package ru.netology.delivary;
+package ru.netology.delivery.test;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
@@ -73,7 +73,7 @@ public class DeliveryCardTest {
 
     @Test
     void shouldFillInvalidCity() {
-        $("[data-test-id=city] .input__control").setValue("Мухосранск");
+        $("[data-test-id=city] .input__control").setValue(DataGenerator.getInvalidCity());
         $("[data-test-id=date] [type='tel']").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] [type='tel']").setValue(firstDate);
         $("[data-test-id=name] [type='text']").setValue(DataGenerator.getName());
@@ -103,6 +103,6 @@ public class DeliveryCardTest {
         $("[data-test-id=name] [type='text']").setValue(DataGenerator.getName());
         $("[data-test-id=phone] input").setValue(DataGenerator.getPhone());
         $(Selectors.withText("Запланировать")).click();
-        $("[role='presentation']").shouldHave(Condition.exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
+        $(".input_invalid .checkbox__text").shouldHave(Condition.exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
     }
 }

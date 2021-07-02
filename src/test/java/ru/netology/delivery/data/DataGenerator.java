@@ -14,11 +14,7 @@ public class DataGenerator {
     private static Faker faker = new Faker(new Locale("ru"));
     private DataGenerator() {
     }
-    public static class Registration {
-        private Registration() {
 
-        }
-    }
     public static String generateDate(int newDays) {
         LocalDate newDate = LocalDate.now().plusDays(newDays);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -30,6 +26,12 @@ public class DataGenerator {
                 "Петропавловск-Камчатский", "Абакан", "Владикавказ", "Екатеринбург",
                 "Казань", "Йошкар-Ола", "Калининград", "Кострома", "Калуга", "Краснодар",
                 "Махачкала", "Курган", "Саранск", "Саратов", "Майкоп", "Мурманск", "Волгоград", "Грозный", "Белгород");
+        Random random = new Random();
+        return list.get(random.nextInt(list.size()));
+    }
+
+    public static String getInvalidCity() {
+        List<String> list = Arrays.asList("Мухосранск", "Урюпинск", "Сочи", "Сан-Ремо", "Валенсия");
         Random random = new Random();
         return list.get(random.nextInt(list.size()));
     }
